@@ -39,5 +39,5 @@ function findSuit(arrOrig, rowCount, colCount) {
     return arrMod;
 }
 
-console.log(findSuit(arrField, 3, 2 ));
+console.log(findSuit(arrField, 3, 5 ));
 

@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction:  row;
+    flex-wrap: wrap;
+    height: 378px;
+    width: 264px;
+    border-width: 2;
+    border-color: brown;
+    border-style: solid;
+}
+
+
+.card  {
+    display: flex;
+    width: 40px;
+    height: 50px;
+    border-width: 2;
+    border-color: black;
+    border-style: solid;
+       
+}
+
+.selected {
+    background-color: blueviolet;
+}
+
+.img {
+    width: 24px;
+    height: 30px;
+    margin: auto;
+}
