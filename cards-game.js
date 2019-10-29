@@ -45,10 +45,7 @@ function generateList(arr) {
         for ( let j = 0; j < arr[i].length; j++) {
 
             let div = document.createElement('div');
-            function setClass() { if ( arr[i][j].show === true ) 
-             { return div.className = "card" } else {  return div.className ="card selected" } };
-
-            setClass();
+             if ( arr[i][j].show === true ) { div.className = "card" } else { div.className ="card selected"};
 
             div.insertAdjacentHTML('beforeend', `<img class="img" src=${ arr[i][j].suit || question }>`);
 
