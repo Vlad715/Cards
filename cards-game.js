@@ -21,10 +21,7 @@ function makeObjCard(list) {
 
     newArr = list.map( (item) => {
          return (item.map( (el) => {
-                return {
-                    suit: el,
-                    show: true
-                };        
+                return el;      
         }));       
     });
 
@@ -45,17 +42,15 @@ function generateList(arr) {
         for ( let j = 0; j < arr[i].length; j++) {
 
             let div = document.createElement('div');
-             if ( arr[i][j].show === true ) { div.className = "card" } else { div.className ="card selected"};
+            div.className = "card";
 
-            div.insertAdjacentHTML('beforeend', `<img class="img" src=${ arr[i][j].suit || question }>`);
+            div.insertAdjacentHTML('beforeend', `<img class="img" src=${ arr[i][j] || question }>`);
 
             container.appendChild(div);
         }       
     }  
 }
 generateList(newArr);
-
-console.log(newArr);
 
 
 btnRefresh.addEventListener('click', function (e) {
@@ -64,6 +59,7 @@ btnRefresh.addEventListener('click', function (e) {
 
 
 $('div').click(function(){
+    console.log(25); 
     return makeCoordinate($(this).index());
 });
 
@@ -74,6 +70,7 @@ function makeCoordinate(num) {
 
     let y = Math.floor(num % 6);
 
+    
     return findSuit(newArr, x, y);
 }
 
@@ -85,24 +82,25 @@ function findSuit(arrOrig, rowCount, colCount) {
     function getNeighbor(row, col) {
 
         let colMinus =  col === 0 ?  0 : col - 1;
-        if ( arrMod[row][colMinus].suit === arrOrig[row][col].suit) { arrMod[row][colMinus].suit = null; getNeighbor(row, colMinus)};
+        if ( arrMod[row][colMinus] === arrOrig[row][col]) { arrMod[row][colMinus] = null; getNeighbor(row, colMinus)};
 
         let colPlus = col === arrOrig.length ? arrOrig.length : col + 1;
-        if ( arrMod[row][colPlus].suit === arrOrig[row][col].suit) { arrMod[row][colPlus].suit = null; getNeighbor(row, colPlus)};
+        if ( arrMod[row][colPlus] === arrOrig[row][col]) { arrMod[row][colPlus] = null; getNeighbor(row, colPlus)};
 
         let rowMinus = row === 0 ? 0 : row - 1;
-        if ( arrMod[rowMinus][col].suit === arrOrig[row][col].suit) { arrMod[rowMinus][col].suit = null; getNeighbor(rowMinus, col)};
+        if ( arrMod[rowMinus][col] === arrOrig[row][col]) { arrMod[rowMinus][col] = null; getNeighbor(rowMinus, col)};
 
         let rowPlus = row === arrOrig[1].length ? arrOrig[1].length : row + 1;
-        if ( arrMod[rowPlus][col].suit === arrOrig[row][col].suit) { arrMod[rowPlus][col].suit = null; getNeighbor(rowPlus, col) };
+        if ( arrMod[rowPlus][col] === arrOrig[row][col]) { arrMod[rowPlus][col] = null; getNeighbor(rowPlus, col) };
 
-        arrMod[row][col].suit = null;
+        arrMod[row][col] = null;
     }
 
     getNeighbor(rowCount, colCount);
 
     return generateList(arrMod);
 }
+
 
 
 
